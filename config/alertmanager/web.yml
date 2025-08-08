@@ -1,0 +1,6 @@
+---
+
+basic_auth_users:
+  alice: $2y$12$ZJDciAXsw8s23bWoRvXA/uE51dGujuG3tdoDA/Et9xT1WeoJUrPQS # s3cr3t
+
+...

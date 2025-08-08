@@ -1,0 +1,75 @@
+---
+
+networks:
+  alertmanager-relay:
+
+services:
+  alertmanager-relay:
+    build: .
+    environment:
+      POLL_INTERVAL: "5s"
+      SRC_ALERTMANAGER_URL: http://alertmanager-src:9093
+      DST_ALERTMANAGER_URL: http://alertmanager-dst:9093
+      # SRC_AUTH_USERNAME: alice
+      # SRC_AUTH_PASSWORD: s3cr3t
+      DST_AUTH_USERNAME: alice
+      DST_AUTH_PASSWORD: s3cr3t
+    ports:
+      - "9080:8080"
+    healthcheck:
+      test: ["CMD", "/healthcheck", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      - alertmanager-src
+      - alertmanager-dst
+      # alertmanager-src:
+      #   condition: service_healthy
+      # alertmanager-dst:
+      #   condition: service_healthy
+    networks:
+      alertmanager-relay:
+  alertmanager-src:
+    image: prom/alertmanager:v0.22.2
+    restart: unless-stopped
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./config/alertmanager:/etc/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
+      - '--log.level=info'
+      # - '--web.config.file=/etc/alertmanager/web.yml'
+    # healthcheck:
+    #   test: ["CMD", "wget", "--user=alice", "--password=s3cr3t", "--no-verbose", "--tries=1", "--spider", "http://localhost:9093/-/healthy"]
+    #   interval: 15s
+    #   timeout: 5s
+    #   retries: 3
+    #   start_period: 30s
+    networks:
+      alertmanager-relay:
+  alertmanager-dst:
+    image: prom/alertmanager:v0.22.2
+    restart: unless-stopped
+    ports:
+      - "9095:9093"
+    volumes:
+      - ./config/alertmanager:/etc/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
+      - '--log.level=info'
+      - '--web.config.file=/etc/alertmanager/web.yml'
+    # healthcheck:
+    #   test: ["CMD", "wget", "--user=alice", "--password=s3cr3t", "--no-verbose", "--tries=1", "--spider", "http://localhost:9093/-/healthy"]
+    #   interval: 15s
+    #   timeout: 5s
+    #   retries: 3
+    #   start_period: 30s
+    networks:
+      alertmanager-relay:
+
+...
