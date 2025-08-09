@@ -1,0 +1,25 @@
+---
+
+name: publish-latest
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: randomgoods/alertmanager-relay
+          registry: docker.io
+          tags: latest
+          dockerfile: ./Dockerfile
+          directory: .
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+
+...

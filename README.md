@@ -1,5 +1,7 @@
 # alertmanager-relay
 
+[![build](https://github.com/randomgoods/alertmanager-relay/actions/workflows/build.yml/badge.svg)](https://github.com/randomgoods/alertmanager-relay/actions/workflows/build.yml)
+
 Simple service to relay alerts from one alertmanager to another.
 
 ## Usage
