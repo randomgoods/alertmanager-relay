@@ -71,6 +71,14 @@ Checking for alerts at destination.
 # curl localhost:9095/api/v1/alerts
 ```
 
+## Contributions
+
+See [CONTRIBUTING](https://github.com/randomgoods/alertmanager-relay/blob/main/CONTRIBUTING.md)
+
+## Credits
+
+See [CREDITS](https://github.com/randomgoods/alertmanager-relay/blob/main/CREDITS)
+
 ## License
 
-MIT (c) 2025 randomgoods and contributors
+[MIT](https://github.com/randomgoods/alertmanager-relay/blob/main/LICENSE) (c) 2025 randomgoods and contributors
