@@ -12,7 +12,26 @@ docker run --rm -e SRC_ALERTMANAGER_URL=http://source:9093 \
                  -e DST_AUTH_USERNAME=alice \
                  -e DST_AUTH_PASSWORD=s3cr3t \
                  -p 8080:8080 \
-                 alertmanager-relay:latest
+                 randomgoods/alertmanager-relay:latest
+```
+
+## Deployment
+
+### Executable
+
+Copy the execuable to appropriate host.
+
+### Docker
+
+Either use `docker-compose.{dev,auth}.yml` as a template for deployment with docker compose
+or run the container directly with `docker run` like mentioned above.
+
+### k8s
+
+Deploy with kustomize.
+
+```
+kubectl apply -k overlays/production/
 ```
 
 ## Development
@@ -50,6 +69,6 @@ Checking for alerts at destination.
 # curl localhost:9095/api/v1/alerts
 ```
 
-## TODO
+## License
 
-- kustomize
+MIT (c) 2025 randomgoods and contributors

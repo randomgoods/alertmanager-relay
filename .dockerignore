@@ -1,0 +1,5 @@
+/.github/
+/kustomize/
+
+.editorconfig
+docker-compose*.yml

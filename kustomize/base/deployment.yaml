@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alertmanager-relay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alertmanager-relay
+  template:
+    metadata:
+      labels:
+        app: alertmanager-relay
+    spec:
+      containers:
+      - name: relay
+        image: randomgoods/alertmanager-relay:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: SRC_ALERTMANAGER_URL
+          value: "http://source-alertmanager:9093"
+        - name: DST_ALERTMANAGER_URL
+          value: "http://dest-alertmanager:9093"
+        - name: DST_AUTH_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: alertmanager-relay-auth
+              key: dst_username
+        - name: DST_AUTH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: alertmanager-relay-auth
+              key: dst_password
+        ports:
+        - containerPort: 8080
+          name: metrics

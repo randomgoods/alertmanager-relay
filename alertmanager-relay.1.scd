@@ -2,7 +2,7 @@ alertmanager-relay(1)
 
 # NAME
 
-alertmanager-relay - Build or execute commands from stdin
+alertmanager-relay - Relay alerts from one alertmanager to another
 
 # SYNOPSIS
 

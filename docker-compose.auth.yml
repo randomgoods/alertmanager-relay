@@ -10,6 +10,10 @@ services:
       POLL_INTERVAL: "5s"
       SRC_ALERTMANAGER_URL: http://alertmanager-src:9093
       DST_ALERTMANAGER_URL: http://alertmanager-dst:9093
+      # SRC_AUTH_USERNAME: alice
+      # SRC_AUTH_PASSWORD: s3cr3t
+      DST_AUTH_USERNAME: alice
+      DST_AUTH_PASSWORD: s3cr3t
     ports:
       - "9080:8080"
     healthcheck:
@@ -19,10 +23,8 @@ services:
       retries: 3
       start_period: 10s
     depends_on:
-      alertmanager-src:
-        condition: service_healthy
-      alertmanager-dst:
-        condition: service_healthy
+      - alertmanager-src
+      - alertmanager-dst
     networks:
       alertmanager-relay:
   alertmanager-src:
@@ -36,12 +38,7 @@ services:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
       - '--storage.path=/alertmanager'
       - '--log.level=info'
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9093/-/healthy"]
-      interval: 15s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
+      # - '--web.config.file=/etc/alertmanager/web.yml'
     networks:
       alertmanager-relay:
   alertmanager-dst:
@@ -55,12 +52,7 @@ services:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
       - '--storage.path=/alertmanager'
       - '--log.level=info'
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9093/-/healthy"]
-      interval: 15s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
+      - '--web.config.file=/etc/alertmanager/web.yml'
     networks:
       alertmanager-relay:
 
