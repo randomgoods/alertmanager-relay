@@ -13,7 +13,7 @@ import (
 )
 
 // VERSION contains the version info
-var VERSION string = "v0.0.0 (2025-08-09)"
+var VERSION string = "v0.0.1 (2025-08-09)"
 
 func main() {
 	interval := getenvDuration("POLL_INTERVAL", 60*time.Second)
