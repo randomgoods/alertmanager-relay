@@ -27,6 +27,18 @@ alertmanager-relay - Build or execute commands from stdin
 *HTTP_PORT*=8080
 	The port of the HTTP endpoint, only for healthcheck
 
+*SRC_AUTH_USERNAME*
+	Username for basic authentication to source alertmanager
+
+*SRC_AUTH_PASSWORD*
+	Password for basic authentication to source alertmanager
+
+*DST_AUTH_USERNAME*
+	Username for basic authentication to destination alertmanager
+
+*DST_AUTH_PASSWORD*
+	Password for basic authentication to destination alertmanager
+
 # EXAMPLES
 
 alertmanager-relay

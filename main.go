@@ -55,6 +55,7 @@ func main() {
 	select {}
 }
 
+// pullAndPush handles the API interactions with the source and destination alertmanager instances.
 func pullAndPush(c *http.Client, src, dst, apiVersion string) error {
 	// pull
 	reqSrc, _ := http.NewRequestWithContext(context.Background(), "GET", src+"/api/"+apiVersion+"/alerts", nil)
@@ -103,12 +104,15 @@ func pullAndPush(c *http.Client, src, dst, apiVersion string) error {
 }
 
 // helpers
+// getenv fetches the value of an environment variable as string.
 func getenv(key, fallback string) string {
 	if v := os.Getenv(key); v != "" {
 		return v
 	}
 	return fallback
 }
+
+// getenvDuration fetches the value of an environment variable as time.Duration.
 func getenvDuration(key string, fallback time.Duration) time.Duration {
 	if v := os.Getenv(key); v != "" {
 		if d, err := time.ParseDuration(v); err == nil {

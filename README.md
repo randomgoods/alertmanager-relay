@@ -1,6 +1,6 @@
 # alertmanager-relay
 
-Simple service to relay alerts from alertmanager to another.
+Simple service to relay alerts from one alertmanager to another.
 
 ## Usage
 
@@ -9,8 +9,8 @@ Run with Docker.
 ```
 docker run --rm -e SRC_ALERTMANAGER_URL=http://source:9093 \
                  -e DST_ALERTMANAGER_URL=http://dest:9093 \
-                 -e AUTH_USERNAME=alice \
-                 -e AUTH_PASSWORD=s3cr3t \
+                 -e DST_AUTH_USERNAME=alice \
+                 -e DST_AUTH_PASSWORD=s3cr3t \
                  -p 8080:8080 \
                  alertmanager-relay:latest
 ```
@@ -53,4 +53,3 @@ Checking for alerts at destination.
 ## TODO
 
 - kustomize
-- Documentation

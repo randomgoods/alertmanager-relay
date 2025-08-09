@@ -2,7 +2,7 @@ PREFIX?=/usr
 BINDIR?=$(PREFIX)/bin
 SHAREDIR?=$(PREFIX)/share
 
-NAME=alermanager-relay
+NAME=alertmanager-relay
 
 default: run
 
