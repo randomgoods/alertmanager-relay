@@ -7,7 +7,7 @@ NAME=alertmanager-relay
 default: run
 
 build:
-	go build -o bin/alertmanager-relay
+	go build -o bin/$(NAME)
 
 clean:
 	rm -Rf ./bin/
