@@ -14,6 +14,7 @@ services:
       # SRC_AUTH_PASSWORD: s3cr3t
       DST_AUTH_USERNAME: alice
       DST_AUTH_PASSWORD: s3cr3t
+      ALERTMANAGER_API_VERSION: v1 # or v2
     ports:
       - "9080:8080"
     healthcheck:

@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - secret.yaml
+  # NOTE: Secret is generated in overlays
 
 commonLabels:
   app: alertmanager-relay
