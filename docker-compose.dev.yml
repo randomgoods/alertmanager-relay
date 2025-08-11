@@ -10,6 +10,7 @@ services:
       POLL_INTERVAL: "5s"
       SRC_ALERTMANAGER_URL: http://alertmanager-src:9093
       DST_ALERTMANAGER_URL: http://alertmanager-dst:9093
+      ALERTMANAGER_API_VERSION: v1 # or v2
     ports:
       - "9080:8080"
     healthcheck:
