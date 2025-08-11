@@ -13,13 +13,13 @@ import (
 )
 
 // VERSION contains the version info
-var VERSION string = "v0.0.1 (2025-08-09)"
+var VERSION string = "v0.0.2 (2025-08-11)"
 
 func main() {
 	interval := getenvDuration("POLL_INTERVAL", 60*time.Second)
 	src := getenv("SRC_ALERTMANAGER_URL", "http://src-alertmanager:9093")
 	dst := getenv("DST_ALERTMANAGER_URL", "http://dst-alertmanager:9093")
-	alertmanagerApiVersion := getenv("ALERTMANAGER_API_VERSION", "v1")
+	alertmanagerApiVersion := getenv("ALERTMANAGER_API_VERSION", "v2")
 	httpPort := getenv("HTTP_PORT", "8080")
 
 	log.Printf("alertmanager-relay %v", VERSION)
