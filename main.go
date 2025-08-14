@@ -98,7 +98,7 @@ func pullAndPush(c *http.Client, src, dst, apiVersion string) error {
 			return err
 		}
 		if len(payload.Data) == 0 {
-			log.Println("Nothing to forward. Awaiting next cycle.")
+			debuglog("Nothing to forward. Awaiting next cycle.")
 			return nil // nothing to forward
 		}
 
@@ -111,7 +111,7 @@ func pullAndPush(c *http.Client, src, dst, apiVersion string) error {
 			return err
 		}
 		if len(alerts) == 0 {
-			log.Println("Nothing to forward. Awaiting next cycle.")
+			debuglog("Nothing to forward. Awaiting next cycle.")
 			return nil // nothing to forward
 		}
 
@@ -138,7 +138,7 @@ func post(c *http.Client, dst, apiVersion string, body []byte) error {
 	if respDst.StatusCode >= 300 {
 		return fmt.Errorf("destination returned %s", respDst.Status)
 	}
-	log.Println("Forwarding successful")
+	debuglog("Forwarding successful")
 	return nil
 }
 
@@ -159,4 +159,11 @@ func getenvDuration(key string, fallback time.Duration) time.Duration {
 		}
 	}
 	return fallback
+}
+
+// debuglog only logs to stdout if the debug flag is set.
+func debuglog(msg string) {
+	if v := os.Getenv("DEBUG"); v != "" {
+		log.Println(msg)
+	}
 }

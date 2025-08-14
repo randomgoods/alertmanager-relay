@@ -11,6 +11,7 @@ services:
       SRC_ALERTMANAGER_URL: http://alertmanager-src:9093
       DST_ALERTMANAGER_URL: http://alertmanager-dst:9093
       ALERTMANAGER_API_VERSION: v1 # or v2
+      DEBUG: "1"
     ports:
       - "9080:8080"
     healthcheck:
