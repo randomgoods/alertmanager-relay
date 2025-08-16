@@ -80,7 +80,7 @@ install: build man
 
 uninstall:
 	@rm -f $(DESTDIR)$(BINDIR)/$(BINARY_NAME)
-	@rm -f $(DESTDIR)$(SHAREDIR)/man/man1/$(BINARY_NAME).1
+	@rm -f $(DESTDIR)$(SHAREDIR)/man/man1/$(BINARY_NAME).1.gz
 	@mandb --quiet
 
 help:
