@@ -8,8 +8,8 @@ Simple service to relay alerts from one alertmanager to another.
 
 Run with Docker.
 
-```
-docker run --rm -e SRC_ALERTMANAGER_URL=http://source:9093 \
+```sh
+# docker run --rm -e SRC_ALERTMANAGER_URL=http://source:9093 \
                  -e DST_ALERTMANAGER_URL=http://dest:9093 \
                  -e DST_AUTH_USERNAME=alice \
                  -e DST_AUTH_PASSWORD=s3cr3t \
@@ -32,8 +32,8 @@ or run the container directly with `docker run` like mentioned above.
 
 Deploy with kustomize.
 
-```
-kubectl apply -k overlays/production/
+```sh
+# kubectl apply -k overlays/production/
 ```
 
 ## Development
@@ -49,14 +49,14 @@ kubectl apply -k overlays/production/
 
 Create an encrypted password for `config/alertmanager/web.yml`.
 
-```
-htpasswd -bnBC 12 "" "s3cr3t" | cut -d ':' -f 2
+```sh
+# htpasswd -bnBC 12 "" "s3cr3t" | cut -d ':' -f 2
 ```
 
 Start test setup.
 
-```
-docker compose -f docker-compose.dev.yml up -d
+```sh
+# docker compose -f docker-compose.dev.yml up -d
 ```
 
 Sending test alerts.
