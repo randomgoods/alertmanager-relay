@@ -1,5 +1,5 @@
 # binaries
-main
-alertmanager-relay
+/main
+/alertmanager-relay
 
 /bin/

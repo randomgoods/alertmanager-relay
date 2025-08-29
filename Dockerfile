@@ -6,7 +6,7 @@ COPY go.mod ./
 RUN go mod download
 
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o alertmanager-relay main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o alertmanager-relay cmd/alertmanager-relay/main.go
 
 FROM ghcr.io/meck93/distroless-http-healthcheck:latest AS healthcheck
 

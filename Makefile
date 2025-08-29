@@ -13,11 +13,13 @@ GOINSTALL := $(GO) install $(LDFLAGS)
 GOCLEAN := $(GO) clean
 GOTEST := $(GO) test
 GOGET := $(GO) get
-GOFMT := gofmt -s -w
+# GOFMT := gofmt -s -w
+GOFMT := $(GO) fmt
 GOVET := $(GO) vet
 GOMOD := $(GO) mod
 
 PLATFORMS := linux/amd64 darwin/amd64 windows/amd64
+PACKAGES := $(shell go list ./...)
 
 .PHONY: default all build cross-compile clean deps fmt vet run test man install uninstall help
 
@@ -28,7 +30,7 @@ all: test build
 build:
 	@echo "Building $(BINARY_NAME)..."
 	@mkdir -p $(BUILD_DIR)
-	@$(GOBUILD) -o $(BUILD_DIR)/$(BINARY_NAME)
+	@$(GOBUILD) -o $(BUILD_DIR)/$(BINARY_NAME) ./...
 
 cross-compile:
 	@echo "Cross-compiling..."
