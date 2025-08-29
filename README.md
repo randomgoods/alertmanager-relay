@@ -61,13 +61,13 @@ Start test setup.
 
 Sending test alerts.
 
-```
+```sh
 # curl -H "Content-Type: application/json" -d '[{"labels":{"alertname":"myalert"}}]' localhost:9093/api/v1/alerts # /api/v2
 ```
 
 Checking for alerts at destination.
 
-```
+```sh
 # curl localhost:9095/api/v1/alerts
 ```
 
