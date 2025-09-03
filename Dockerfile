@@ -1,5 +1,5 @@
 # ---------- build stage ----------
-FROM golang:1.24-alpine AS builder
+FROM golang:1.25-alpine AS builder
 
 WORKDIR /src
 COPY go.mod ./
@@ -11,7 +11,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o alertmanager-rela
 FROM ghcr.io/meck93/distroless-http-healthcheck:latest AS healthcheck
 
 # ---------- runtime stage ----------
-FROM alpine:3.21
+FROM alpine:3.22
 
 COPY --from=healthcheck /healthcheck /healthcheck
 
