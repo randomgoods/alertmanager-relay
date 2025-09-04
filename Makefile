@@ -1,6 +1,6 @@
-PREFIX?=/usr
-BINDIR?=$(PREFIX)/bin
-SHAREDIR?=$(PREFIX)/share
+PREFIX ?= /usr/local
+BINDIR ?= $(PREFIX)/bin
+SHAREDIR ?= $(PREFIX)/share
 BUILD_DIR := bin
 
 BINARY_NAME := alertmanager-relay
